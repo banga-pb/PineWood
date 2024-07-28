@@ -1,0 +1,6 @@
+@Pinewood_demo_HostAddress = http://localhost:5016
+
+GET {{Pinewood_demo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
