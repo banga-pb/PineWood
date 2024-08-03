@@ -1,0 +1,83 @@
+@if (viewMode){
+    @if (currentCustomer.id){
+    <h4>Customer</h4>
+    <div>
+      <label><strong>First Name:</strong></label> {{ currentCustomer.firstName }}
+    </div>
+    <div>
+      <label><strong>Last Name:</strong></label>
+      {{ currentCustomer.lastName }}
+    </div>
+    <div>
+      <label><strong>Status:</strong></label>
+      {{ currentCustomer.isActive ? "Active" : "In Active" }}
+    </div>
+  
+    <a class="edit-customer" routerLink="/customer/{{currentCustomer.id}}">
+      Edit
+    </a>
+    } @else {<p>Please click on a Customers from the list...</p>}
+    
+  } @else {
+    @if (currentCustomer.id) {
+    <div class="edit-form">
+      <h4>Customer</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentCustomer.firstName"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentCustomer.lastName"
+            name="description"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentCustomer.isActive ? "Active" : "In Active" }}
+        </div>
+      </form>
+  
+      @if (currentCustomer.isActive) {
+      <button class="edit-customer"
+        (click)="updatePublished(false)" >
+        In Active
+      </button>
+      } @else {
+      <button class="edit-customer" (click)="updatePublished(true)">
+        Active
+      </button>
+      }
+  
+      <button class="edit-customer" (click)="deleteCustomer()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="edit-customer"
+        (click)="updateCustomer()">
+        Update
+      </button>
+      
+  
+        <a class="edit-customer" routerLink="/customers">
+        Back
+      </a>
+      <p>{{ message }}</p>
+    </div>
+    } @else {<p>Cannot access this Customer...</p>}
+  }
+  
