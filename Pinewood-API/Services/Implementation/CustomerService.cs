@@ -82,7 +82,7 @@ namespace Pinewood_demo.Services.Implementation
             var customerIndex = _customerList.FindIndex(index => index.Id == id);
             try
             {
-                if (customerIndex > 0)
+                if (customerIndex > -1)
                 {
                     var Customer = _customerList[customerIndex];
 

@@ -56,8 +56,8 @@ namespace Pinewood_demo.Controllers
         [Route("{id}")]
         public IActionResult UpdateCustomer([FromRoute] int id, [FromBody] UpdateCustomer customerObject)
         {
-            var hero = _heroService.UpdateCustomer(id, customerObject);
-            if (hero == null)
+            var flag = _heroService.UpdateCustomer(id, customerObject);
+            if (flag == null)
             {
                 return NotFound();
             }
@@ -65,13 +65,13 @@ namespace Pinewood_demo.Controllers
             return Ok(new
             {
                 message = "Customer Updated Successfully!!!",
-                id = hero!.Id
+                id = flag!.Id
             });
         }
 
         [HttpDelete]
-        [Route("{id}")]
-        public IActionResult DeleteCustomer([FromRoute] int _id)
+        [Route("{_id}")]
+        public IActionResult DeleteCustomer(int _id)
         {
             if (!_heroService.DeleteCustomerByID(_id))
             {

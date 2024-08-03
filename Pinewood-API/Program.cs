@@ -2,6 +2,19 @@ using Pinewood_demo.Services.Implementation;
 using Pinewood_demo.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
+//Allowing CORS for an array of specific domains.
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("*");
+                          policy.AllowAnyMethod();
+                          policy.AllowAnyHeader();
+                      });
+});
 
 // Add services to the container.
 
@@ -26,4 +39,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+
+app.UseCors(MyAllowSpecificOrigins);
 app.Run();
